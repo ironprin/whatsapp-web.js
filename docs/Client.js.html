@@ -624,7 +624,7 @@ class Client extends EventEmitter {
 
         const newMessage &#x3D; await this.pupPage.evaluate(async (chatId, message, options, sendSeen) &#x3D;&gt; {
             const chatWid &#x3D; window.Store.WidFactory.createWid(chatId);
-            const chat &#x3D; await window.Store.Chat.find(chatWid);
+            const chat &#x3D; await window.Store.Chat._find(chatWid);
 
 
             if (sendSeen) {
@@ -840,8 +840,8 @@ class Client extends EventEmitter {
                 return true;
             }
             const MAX_PIN_COUNT &#x3D; 3;
-            if (window.Store.Chat.models.length &gt; MAX_PIN_COUNT) {
-                let maxPinned &#x3D; window.Store.Chat.models[MAX_PIN_COUNT - 1].pin;
+            if (window.Store.Chat._models.length &gt; MAX_PIN_COUNT) {
+                let maxPinned &#x3D; window.Store.Chat._models[MAX_PIN_COUNT - 1].pin;
                 if (maxPinned) {
                     return false;
                 }

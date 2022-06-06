@@ -593,7 +593,7 @@ class Client extends EventEmitter {
 
         const newMessage = await this.pupPage.evaluate(async (chatId, message, options, sendSeen) => {
             const chatWid = window.Store.WidFactory.createWid(chatId);
-            const chat = await window.Store.Chat.find(chatWid);
+            const chat = await window.Store.Chat._find(chatWid);
 
 
             if (sendSeen) {
@@ -809,8 +809,8 @@ class Client extends EventEmitter {
                 return true;
             }
             const MAX_PIN_COUNT = 3;
-            if (window.Store.Chat.models.length > MAX_PIN_COUNT) {
-                let maxPinned = window.Store.Chat.models[MAX_PIN_COUNT - 1].pin;
+            if (window.Store.Chat._models.length > MAX_PIN_COUNT) {
+                let maxPinned = window.Store.Chat._models[MAX_PIN_COUNT - 1].pin;
                 if (maxPinned) {
                     return false;
                 }
