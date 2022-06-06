@@ -1087,7 +1087,7 @@ class Client extends EventEmitter {
     async getChatsByLabelId(labelId) {
         const chatIds &#x3D; await this.pupPage.evaluate(async (labelId) &#x3D;&gt; {
             const label &#x3D; window.Store.Label.get(labelId);
-            const labelItems &#x3D; label.labelItemCollection.models;
+            const labelItems &#x3D; label.labelItemCollection._models;
             return labelItems.reduce((result, item) &#x3D;&gt; {
                 if (item.parentType &#x3D;&#x3D;&#x3D; &#x27;Chat&#x27;) {
                     result.push(item.parentId);
@@ -1105,7 +1105,7 @@ class Client extends EventEmitter {
      */
     async getBlockedContacts() {
         const blockedContacts &#x3D; await this.pupPage.evaluate(() &#x3D;&gt; {
-            let chatIds &#x3D; window.Store.Blocklist.models.map(a &#x3D;&gt; a.id._serialized);
+            let chatIds &#x3D; window.Store.Blocklist._models.map(a &#x3D;&gt; a.id._serialized);
             return Promise.all(chatIds.map(id &#x3D;&gt; window.WWebJS.getContact(id)));
         });
 

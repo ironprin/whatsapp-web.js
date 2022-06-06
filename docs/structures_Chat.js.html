@@ -210,7 +210,7 @@ class Chat extends Base {
             const msgFilter &#x3D; m &#x3D;&gt; !m.isNotification; // dont include notification messages
 
             const chat &#x3D; window.Store.Chat.get(chatId);
-            let msgs &#x3D; chat.msgs.models.filter(msgFilter);
+            let msgs &#x3D; chat.msgs._models.filter(msgFilter);
 
             if (searchOptions &amp;amp;&amp;amp; searchOptions.limit &gt; 0) {
                 while (msgs.length &amp;lt; searchOptions.limit) {
