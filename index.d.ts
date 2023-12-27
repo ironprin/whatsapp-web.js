@@ -968,6 +968,7 @@ declare namespace WAWebJS {
     export class Location {
         latitude: string;
         longitude: string;
+        description: string;
         options?: LocationSendOptions;
         
         constructor(latitude: number, longitude: number, options?: LocationSendOptions)
